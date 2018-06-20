@@ -1,7 +1,7 @@
 use super::{CallBackQuery, Message};
 
 /// Represents an update returned by the Telegram API.
-#[derive(Clone, Deserialize, Debug)]
+#[derive(Clone, Serialize, Deserialize, Debug)]
 pub struct Update {
     pub update_id: i64,
     pub message: Option<Message>,

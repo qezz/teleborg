@@ -1,7 +1,7 @@
 use objects::PhotoSize;
 
 /// Represents an animation object.
-#[derive(Clone, Deserialize, Debug)]
+#[derive(Clone, Serialize, Deserialize, Debug)]
 pub struct Animation {
     pub file_id: String,
     pub thump: Option<PhotoSize>,

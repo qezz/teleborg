@@ -1,7 +1,7 @@
 use objects::PhotoSize;
 
 /// Represents a video file.
-#[derive(Clone, Deserialize, Debug)]
+#[derive(Clone, Serialize, Deserialize, Debug)]
 pub struct Video {
     pub file_id: String,
     pub width: i64,

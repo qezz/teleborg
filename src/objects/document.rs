@@ -1,7 +1,7 @@
 use objects::PhotoSize;
 
 /// Represents a document.
-#[derive(Clone, Deserialize, Debug)]
+#[derive(Clone, Serialize, Deserialize, Debug)]
 pub struct Document {
     pub file_id: String,
     pub thump: Option<PhotoSize>,

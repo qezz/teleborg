@@ -3,7 +3,7 @@ use objects::MessageEntity;
 use objects::Animation;
 
 /// Represents a game.
-#[derive(Clone, Deserialize, Debug)]
+#[derive(Clone, Serialize, Deserialize, Debug)]
 pub struct Game {
     title: String,
     description: String,

@@ -1,5 +1,5 @@
 /// Represents a voice memo.
-#[derive(Clone, Deserialize, Debug)]
+#[derive(Clone, Serialize, Deserialize, Debug)]
 pub struct Voice {
     pub file_id: String,
     pub duration: i64,

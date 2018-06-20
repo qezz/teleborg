@@ -2,7 +2,7 @@ use super::{User, Chat, MessageEntity, Contact, Document, Audio, Sticker, Video,
             Location, Venue, Game};
 
 /// Represents a Telegram message.
-#[derive(Clone, Deserialize, Debug)]
+#[derive(Clone, Serialize, Deserialize, Debug)]
 pub struct Message {
     pub message_id: i64,
     pub from: Option<User>,

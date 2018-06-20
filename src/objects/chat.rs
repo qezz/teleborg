@@ -1,5 +1,5 @@
 /// Represents a Telegram chat.
-#[derive(Clone, Deserialize, Debug)]
+#[derive(Clone, Serialize, Deserialize, Debug)]
 pub struct Chat {
     pub id: i64,
     #[serde(rename = "type")]
