@@ -140,7 +140,8 @@ impl Bot {
     }
 
     /// Edit message
-    pub fn edit_message<M: ReplyMarkup>(
+    pub fn edit_message// <M: ReplyMarkup>
+    (
         &self,
         chat_id: &i64,
         message_id: Option<&i64>,
@@ -148,16 +149,16 @@ impl Bot {
         text: &str,
         parse_mode: Option<&ParseMode>,
         disable_web_page_preview: Option<&bool>,
-        reply_markup: Option<M>,
+        // reply_markup: Option<M>,
     ) -> Result<Message> {
         debug!("Calling edit_message...");
         let chat_id: &str = &chat_id.to_string();
         let parse_mode = &get_parse_mode(parse_mode.unwrap_or(&ParseMode::Text));
         let disable_web_page_preview: &str =
             &disable_web_page_preview.unwrap_or(&false).to_string();
-        let reply_markup = &Box::new(reply_markup)
-            .map(|r| serde_json::to_string(&r).unwrap_or("".to_string()))
-            .unwrap_or("".to_string());
+        // let reply_markup = &Box::new(reply_markup)
+        //     .map(|r| serde_json::to_string(&r).unwrap_or("".to_string()))
+        //     .unwrap_or("".to_string());
 
         let inline_message_id = &String::from(""); // FIXME
 
@@ -171,7 +172,7 @@ impl Bot {
             ("text", text),
             ("parse_mode", parse_mode),
             ("disable_web_page_preview", disable_web_page_preview),
-            (REPLY_MARKUP, reply_markup),
+            // (REPLY_MARKUP, reply_markup),
         ];
         self.call(&path, &params)
     }
