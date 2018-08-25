@@ -139,6 +139,43 @@ impl Bot {
         self.call(&path, &params)
     }
 
+    /// Edit message
+    pub fn edit_message<M: ReplyMarkup>(
+        &self,
+        chat_id: &i64,
+        message_id: Option<&i64>,
+        inline_message_id: Option<String>,
+        text: &str,
+        parse_mode: Option<&ParseMode>,
+        disable_web_page_preview: Option<&bool>,
+        reply_markup: Option<M>,
+    ) -> Result<Message> {
+        debug!("Calling edit_message...");
+        let chat_id: &str = &chat_id.to_string();
+        let parse_mode = &get_parse_mode(parse_mode.unwrap_or(&ParseMode::Text));
+        let disable_web_page_preview: &str =
+            &disable_web_page_preview.unwrap_or(&false).to_string();
+        let reply_markup = &Box::new(reply_markup)
+            .map(|r| serde_json::to_string(&r).unwrap_or("".to_string()))
+            .unwrap_or("".to_string());
+
+        let inline_message_id = &String::from(""); // FIXME
+
+        let message_id = &message_id.map(|i| i.to_string()).unwrap_or("None".to_string());
+
+        let path = ["editMessageText"];
+        let params = [
+            (CHAT_ID, chat_id),
+            ("message_id", message_id),
+            ("inline_message_id", inline_message_id),
+            ("text", text),
+            ("parse_mode", parse_mode),
+            ("disable_web_page_preview", disable_web_page_preview),
+            (REPLY_MARKUP, reply_markup),
+        ];
+        self.call(&path, &params)
+    }
+
     /// API call which will reply to a message directed to your bot.
     pub fn reply_to_message(&self, update: &Update, text: &str) -> Result<Message> {
         debug!("Calling reply_to_message...");
